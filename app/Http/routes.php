@@ -11,6 +11,33 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+    Route::get('/', function () {
+        return view('home');
+    });
+
+    Route::get('/show', function () {
+        return view('show');
+    });
+
+    Route::get('/home', function () {
+        return view('home');
+    });
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    });
+
+
+    Route::resource('classes', 'ClassController');
+
+
+    Route::controllers([
+        'auth' => 'Auth\AuthController',
+        'password' => 'Auth\PasswordController',
+    ]);
+
+
+
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
