@@ -9,7 +9,12 @@
             <div class="jumbotron">
                 <h1>Welcome!</h1>
                 <p>I am your your Attendance Assistant!  I want to make your life easier.</p>
-                <p><a class="btn btn-primary btn-lg" href="#" role="button">Get started</a></p>
+
+                @if (Auth::guest())
+                    <p><a class="btn btn-primary btn-lg" href= "{{ url('/login') }}" role="button">Get started</a></p>
+                @else
+                    <p><a class="btn btn-primary btn-lg" href= "{{ url('/courses/create') }}" role="button">Get started</a></p>
+                @endif
             </div>
         </div>
     </div><!-- end of header .row -->

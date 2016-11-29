@@ -28,7 +28,9 @@
     });
 
 
-    Route::resource('classes', 'ClassController');
+
+
+    Route::resource('courses', 'CourseController');
 
 
     Route::controllers([

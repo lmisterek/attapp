@@ -1,5 +1,14 @@
 
 @extends('layouts.app')
+
+@section('title', '| Create New Class')
+
+@section('stylesheets')
+
+    {!! Html::style('css/parsley.css') !!}
+
+@endsection
+
 @section('content')
 
 <!-- Teachers can create new classes using this form.  They will input a class prefix, section number,
@@ -7,22 +16,27 @@ course code, year, and list of students  -->
 
     <div class="container">
         <div class = "row">
-            <div class ="col-md-8">
+            <div class ="col-md-8 col-md-offset-2">
                 <h1>Create New Class </h1>
                 <hr>
                 <div class="form-group">
-                    {!! Form::open(['route' => 'classes.store']) !!}
+                    {!! Form::open(['route' => 'courses.store']) !!}
+
+                    <div class = "row">
+                    {{ Form::label('instructor', 'Instructor Last Name:')}}
+                    {{ Form::text('instructor', null, array('class' => 'form-control'))}}
+                    </div>
                     <div class = "row">
                     {{ Form::label('prefix', 'Class Prefix:')}}
                     {{ Form::text('prefix', null, array('class' => 'form-control'))}}
                     <br>
 
-                    {{ Form::label('section', 'Section Number:')}}
-                    {{ Form::text('section', null, array('class' => 'form-control'))}}
+                    {{ Form::label('course_code', 'Section Number:')}}
+                    {{ Form::text('course_code', null, array('class' => 'form-control'))}}
                     <br>
                     </div>
                     <div class ="col-md-2">
-                    {{ Form::label('semester', 'Fall')}}
+                    {{ Form::label('semester', 'Fall', true)}}
                     {{Form::radio('semester', 'fall')}}
                     </div>
                     <div class ="col-md-3">
@@ -49,23 +63,23 @@ course code, year, and list of students  -->
                     <br>
                     <p>
                     List students last name, first name, email@address.com followed by a newline.
-                    {{Form::textarea('username')}}
+                    {{Form::textarea('students', null, array('class' => 'form-control'))}}
                     </p>
                     Set attendance points.  Example:  Tardy = 0.5, Absent = 1.0
                     <br>
                     Set warning level.  After this number of accumulated attendance points, students will receive an email message.
                     <br>
                     <div class="col-xs-4">
-                    {{ Form::label('absentpoint', 'Absence Points:')}}
-                    {{ Form::text('absentpoint', 1, array('class' => 'form-control'))}}
+                    {{ Form::label('absentpoint', 'Absent Points:')}}
+                    {{ Form::text('absentpoint', null, array('class' => 'form-control'))}}
                     </div>
                     <div class="col-xs-4">
-                    {{ Form::label('tardypoint', 'Tardy Points')}}
-                    {{ Form::text('tardypoint', 0.5, array('class' => 'form-control'))}}
+                        {{ Form::label('tardypoint', 'Tardy Points')}}
+                        {{ Form::text('tardypoint', null, array('class' => 'form-control'))}}
                     </div>
                     <div class="col-xs-4">
                     {{ Form::label('warning', 'Warning Points')}}
-                    {{ Form::text('warning', 3, array('class' => 'form-control'))}}
+                    {{ Form::text('warning', null, array('class' => 'form-control'))}}
                     </div>
                     <hr>
                     <hr>
@@ -74,6 +88,13 @@ course code, year, and list of students  -->
                     {!! Form::close() !!}
                 </div>
             </div>
+        </div>
     </div>
+
+@endsection
+
+@section('scripts')
+
+    {!! Html::script('js/parsley.min.js') !!}
 
 @endsection

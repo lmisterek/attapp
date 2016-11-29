@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateCoursesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('courses', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
+            $table->string('instructor', 20);
+            $table->string('prefix', 10);
+            $table->unsignedInteger('course_code');
+            $table->string('semester', 8);
+            $table->string('students');
+            $table->float('absentpoint', 8, 2);
+            $table->float('tardypoint', 8, 2);
+            $table->unsignedInteger('warning');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('courses');
+    }
+}

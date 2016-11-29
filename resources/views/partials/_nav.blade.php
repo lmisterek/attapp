@@ -17,12 +17,21 @@
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
-            <ul class="nav navbar-nav">
-                <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/classes/create">Create a Class</a></li>
-                <li><a href="#">Attendance History</a></li>
-            </ul>
+            @if (Auth::guest())
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url('/login') }}">Dashboard</a></li>
+                    <li><a href="{{ url('/login') }}">Create a Class</a></li>
+                    <li><a href="{{ url('/login') }}">Attendance History</a></li>
+                </ul>
+            @else
 
+                <ul class="nav navbar-nav">
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li><a href="/courses/create">Create a Class</a></li>
+                    <li><a href="#">Attendance History</a></li>
+                </ul>
+
+            @endif
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
