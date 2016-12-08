@@ -26,8 +26,8 @@
             @else
 
                 <ul class="nav navbar-nav">
-                    <li><a href="/dashboard">Dashboard</a></li>
-                    <li><a href="/courses/create">Create a Class</a></li>
+                    <li class="{{ URL::route('courses.index') === URL::current() ? 'active' : '' }}" ><a href="/courses">Dashboard</a></li>
+                    <li class="{{ URL::route('courses.create') === URL::current() ? 'active' : '' }}" ><a href="/courses/create">Create a Class</a></li>
                     <li><a href="#">Attendance History</a></li>
                 </ul>
 

@@ -21,6 +21,7 @@
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
     <link href="/css/attapp.css" type='text/css' rel='stylesheet'>
 
+    {{ Html::style('css/styles.css')}}
     @yield('stylesheets')
 
     <style>

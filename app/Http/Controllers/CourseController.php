@@ -20,7 +20,11 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        // To Do:  Change this so it just pulls up one instructor
+        $courses =  Course::all();
+
+        // return a view and pass in the above variable
+        return view('course.index')->withCourses($courses);
     }
 
     /**
@@ -47,12 +51,13 @@ class CourseController extends Controller
             'instructor' => 'required|max:20',
             'prefix' => 'required|max:10',
             'course_code' => 'required|max:10',
-            'semester' => 'max:8',
-            'students' => 'required',
+            'semester' => 'max:15',
             'absentpoint' => 'required|digits_between:0,3',
             'tardypoint' => 'required|digits_between:0,3',
             'warning' => 'required|digits_between:0,3',
             ));
+
+
 
 
 
@@ -63,7 +68,7 @@ class CourseController extends Controller
         $course->prefix = $request->prefix;
         $course->course_code = $request->course_code;
         $course->semester = $request->semester;
-        $course->students = $request->students;
+
         $course->absentpoint = $request->absentpoint;
         $course->tardypoint = $request->tardypoint;
         $course->warning = $request->warning;
@@ -83,7 +88,11 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        return view  ('course.show');
+        $course = new Course;
+        $course = Course::find($id);
+
+
+        return view('course.show')->with('course', $course);
     }
 
     /**
@@ -94,7 +103,11 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        //
+        // find the post in the data base and save
+        $course = Course::find($id);
+
+        // return the view and pass in the variable we created
+        return view('course.edit')->withCourse($course);
     }
 
     /**
@@ -106,7 +119,41 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+
+
+        // Validate the data
+        $this->validate($request, array(
+            'prefix' => 'required|max:10',
+            'course_code' => 'required|max:10',
+            'semester' => 'max:15',
+            'absentpoint' => 'required|digits_between:0,3',
+            'tardypoint' => 'required|digits_between:0,3',
+            'warning' => 'required|digits_between:0,3',
+            ));
+
+
+
+        // Save the data to the database
+        $course = Course::find($id);
+
+
+        $course->prefix = $request->input('prefix');
+        $course->course_code = $request->input('course_code');
+        $course->semester = $request->input('semester');
+        $course->absentpoint = $request->input('absentpoint');
+        $course->tardypoint = $request->input('tardypoint');
+        $course->warning = $request->input('warning');
+
+        $course->save();
+
+
+        // Set flash data with success message
+        Session::flash('success', "This class was successfully saved.");
+
+
+        // Redirect with flash data to the courses.show
+        return redirect()->route('courses.show', $course->id);
     }
 
     /**
@@ -118,5 +165,13 @@ class CourseController extends Controller
     public function destroy($id)
     {
         //
+        $course = Course::find($id);
+
+        $course->delete();
+
+        // Set flash data with success message
+        Session::flash('success', "This class was successfully deleted.");
+
+        return redirect()->route('courses.index');
     }
 }

@@ -18,11 +18,11 @@ class CreateCoursesTable extends Migration
             $table->string('instructor', 20);
             $table->string('prefix', 10);
             $table->unsignedInteger('course_code');
-            $table->string('semester', 8);
-            $table->string('students');
+            $table->string('semester', 15);
             $table->float('absentpoint', 8, 2);
             $table->float('tardypoint', 8, 2);
             $table->unsignedInteger('warning');
+            $table->int('instructor_id');
         });
     }
 
