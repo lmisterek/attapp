@@ -8,11 +8,13 @@ use Attapp\Http\Requests;
 
 use DB;
 use Carbon;
-use Attapp\Course;
+use Attapp\Student;
 use Attapp\User;
 use Session;
+use Excel;
 
-class CourseController extends Controller
+
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,12 +23,11 @@ class CourseController extends Controller
      */
     public function index()
     {
-        // To Do:  Change this so it just pulls up one instructor
-        $courses =  DB::table('courses')->where('course_code', '12345')->get();
+        // To Do:  Change this so it just pulls up just the instructor's students
+        $students =  Student::all();
 
         // return a view and pass in the above variable
-        return view('course.index')->withCourses($courses);
-
+        return view('student.index')->withStudents($students);
     }
 
     /**
@@ -36,7 +37,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('course.create');
+        return view('student.create');
     }
 
     /**

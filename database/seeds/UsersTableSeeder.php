@@ -14,17 +14,17 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
         'created_at' => Carbon\Carbon::now()->toDateTimeString(),
         'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-        'name' => 'Misterek',
-        'email' => 'leeanna@gmail.com',
-        'password' => 'password',
+        'name' => 'Jill',
+        'email' => 'jill@harvard.edu',
+        'password' => bcrypt('helloworld'),
     ]);
 
         DB::table('users')->insert([
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'name' => 'Caldwell',
-            'email' => 'jc@gmail.com',
-            'password' => 'password',
+            'name' => 'Jamal',
+            'email' => 'jamal@harvard.edu',
+            'password' => bcrypt('helloworld'),
     ]);
     }
 }

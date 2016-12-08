@@ -22,7 +22,7 @@ class CreateCoursesTable extends Migration
             $table->float('absentpoint', 8, 2);
             $table->float('tardypoint', 8, 2);
             $table->unsignedInteger('warning');
-            $table->int('instructor_id');
+            $table->unsignedInteger('instructor_id');
         });
     }
 

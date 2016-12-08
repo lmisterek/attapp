@@ -30,7 +30,14 @@
 
 
 
+
+
+
+
     Route::resource('courses', 'CourseController');
+
+    Route::resource('students', 'StudentController');
+
 
 
     Route::controllers([
@@ -43,3 +50,7 @@
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
+
+    Route::get('/getImport', 'ExcelController@getImport');
+    Route::post('/postImport', 'ExcelController@postImport');
+    Route::get('/getExport', 'ExcelController@getExport');

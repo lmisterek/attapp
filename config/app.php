@@ -148,6 +148,9 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+
+
+
         /*
          * Application Service Providers...
          */
@@ -157,6 +160,11 @@ return [
         Attapp\Providers\RouteServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
+
+        /*
+         * Using Excel to Import list of students
+         */
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
 
     ],
@@ -184,7 +192,9 @@ return [
         'Crypt' => Illuminate\Support\Facades\Crypt::class,
         'DB' => Illuminate\Support\Facades\DB::class,
         'Eloquent' => Illuminate\Database\Eloquent\Model::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Event' => Illuminate\Support\Facades\Event::class,
+
         'File' => Illuminate\Support\Facades\File::class,
         'Form' => Collective\Html\FormFacade::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
@@ -206,6 +216,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        'Input' => Illuminate\Support\Facades\Input::class,
 
     ],
 
