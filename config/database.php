@@ -55,7 +55,8 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', 'localhost'),
-            'unix_socket'   => '/var/run/mysqld/mysqld.sock',
+            //'unix_socket'   => '/var/run/mysqld/mysqld.sock',
+            'unix_socket'   => env('DB_UNIXSOCKET', '/Applications/MAMP/tmp/mysql/mysql.sock'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'attapp'),
             'username' => env('DB_USERNAME', ''),

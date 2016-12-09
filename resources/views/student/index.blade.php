@@ -11,10 +11,10 @@
         </div>
 
         <div class="col-md-12">
-            <a href="#" class="btn btn-danger">Delete All</a>
-            <a href="{{URL::to('/getImport')}}" class="btn btn-success">Import</a>
+            <a href="{{ route('students.create')}}" class="btn btn-primary">Add a Student</a>
+            <a href="{{URL::to('/getImport')}}" class="btn btn-success">Import CSV</a>
             <div class="btn-group">
-                <button type="button" class="btn btn-info">Export</button>
+                <button type="button" class="btn btn-info">Export Roster</button>
                 <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
                     <span class="caret"></span>
                     <span class="sr-only">Toggle Dropdown</span>
@@ -51,9 +51,19 @@
                                 <td>{{ $student->student_first_name}}</td>
                                 <td>{{ $student->email}}</td>
 
+                                <td>
+
+                                    <!--
+                                    <a href="{{ route('students.show', $student->id )}}" class="btn btn-default">View</a>
+                                    <a href="{{ route('students.edit', $student->id)}}" class="btn btn-default">Edit</a>
+                                    -->
+                                    <a href="{{ route('students.edit', $student->id)}}" class="btn btn-default">Edit Student</a>
+
+                                </td>
 
                                 </tr>
                             @endforeach
+
 
                         </tbody>
                     </table>

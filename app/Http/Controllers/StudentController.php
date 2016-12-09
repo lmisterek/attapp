@@ -24,7 +24,7 @@ class StudentController extends Controller
     public function index()
     {
         // To Do:  Change this so it just pulls up just the instructor's students
-        $students =  Student::all();
+        $students =  DB::table('students')->orderBy('student_last_name')->get();
 
         // return a view and pass in the above variable
         return view('student.index')->withStudents($students);
@@ -51,13 +51,9 @@ class StudentController extends Controller
         // validate the data
         $this->validate($request, array(
 
-            'instructor' => 'required|max:20',
-            'prefix' => 'required|max:10',
-            'course_code' => 'required|max:10',
-            'semester' => 'max:15',
-            'absentpoint' => 'required|digits_between:0,3',
-            'tardypoint' => 'required|digits_between:0,3',
-            'warning' => 'required|digits_between:0,3',
+            'student_last_name' => 'required|max:20',
+            'student_first_name' => 'required|max:20',
+            'email' => 'max:20',
             ));
 
 
@@ -65,22 +61,19 @@ class StudentController extends Controller
 
 
         // store in the database
-        $course = new Course;
+        $student = new Student;
 
-        $course->instructor = $request->instructor;
-        $course->prefix = $request->prefix;
-        $course->course_code = $request->course_code;
-        $course->semester = $request->semester;
-        $course->absentpoint = $request->absentpoint;
-        $course->tardypoint = $request->tardypoint;
-        $course->warning = $request->warning;
+        $student->student_last_name = $request->student_last_name;
+        $student->student_first_name = $request->student_first_name;
+        $student->email = $request->email;
 
 
-        $course->save();
 
-        Session::flash('success', 'The class was created!');
+        $student->save();
+
+        Session::flash('success', 'The student was added to the roster!');
         // redirect to another page
-        return redirect()->route('courses.show', $course->id);
+        return redirect()->route('students.index', $student->id);
     }
 
     /**
@@ -91,11 +84,7 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        $course = new Course;
-        $course = Course::find($id);
 
-
-        return view('course.show')->with('course', $course);
     }
 
     /**
@@ -107,10 +96,10 @@ class StudentController extends Controller
     public function edit($id)
     {
         // find the post in the data base and save
-        $course = Course::find($id);
+        $student = Student::find($id);
 
         // return the view and pass in the variable we created
-        return view('course.edit')->withCourse($course);
+        return view('student.edit')->withStudent($student);
     }
 
     /**
@@ -127,36 +116,31 @@ class StudentController extends Controller
 
         // Validate the data
         $this->validate($request, array(
-            'prefix' => 'required|max:10',
-            'course_code' => 'required|max:10',
-            'semester' => 'max:15',
-            'absentpoint' => 'required|digits_between:0,3',
-            'tardypoint' => 'required|digits_between:0,3',
-            'warning' => 'required|digits_between:0,3',
+            'student_last_name' => 'required|max:20',
+            'student_first_name' => 'required|max:20',
+            'email' => 'required|max:50',
             ));
 
 
 
         // Save the data to the database
-        $course = Course::find($id);
+        $student = Student::find($id);
 
 
-        $course->prefix = $request->input('prefix');
-        $course->course_code = $request->input('course_code');
-        $course->semester = $request->input('semester');
-        $course->absentpoint = $request->input('absentpoint');
-        $course->tardypoint = $request->input('tardypoint');
-        $course->warning = $request->input('warning');
+        $student->student_last_name = $request->input('student_last_name');
+        $student->student_first_name = $request->input('student_first_name');
+        $student->email = $request->input('email');
 
-        $course->save();
+
+        $student->save();
 
 
         // Set flash data with success message
-        Session::flash('success', "This class was successfully saved.");
+        Session::flash('success', "This student was successfully saved.");
 
 
-        // Redirect with flash data to the courses.show
-        return redirect()->route('courses.show', $course->id);
+        // Redirect with flash data to the students.show
+        return redirect()->route('students.index', $student->id);
     }
 
     /**
@@ -168,13 +152,13 @@ class StudentController extends Controller
     public function destroy($id)
     {
         //
-        $course = Course::find($id);
+        $student = Student::find($id);
 
-        $course->delete();
+        $student->delete();
 
         // Set flash data with success message
-        Session::flash('success', "This class was successfully deleted.");
+        Session::flash('success', "This student was successfully deleted.");
 
-        return redirect()->route('courses.index');
+        return redirect()->route('students.index');
     }
 }

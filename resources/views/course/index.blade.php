@@ -39,10 +39,9 @@
 
                     <td>{{ $course->course_code}}</td>
                     <td>{{ $course->semester}}</td>
-
-                    <td><a href="{{ route('courses.show', $course->id )}}" class="btn btn-default">View</a>
+                    <td><a href="{{ route('courses.show', $course->id )}}" class="btn btn-default">View Course Details</a>
                         <a href="{{ route('courses.edit', $course->id)}}" class="btn btn-default">Edit</a>
-                        <a href="{{ route('students.index')}}" class="btn btn-default">Add Students</a>
+                        <a href="{{ route('students.index')}}" class="btn btn-default">View Roster</a>
                     </td>
 
                     </tr>
