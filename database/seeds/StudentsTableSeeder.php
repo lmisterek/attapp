@@ -58,6 +58,6 @@ class StudentsTableSeeder extends Seeder
             'email' => 'jh@gmail.com',
             'course_code' => '12345',
         ]);
-    }
+    
     }
 }
