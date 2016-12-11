@@ -5,9 +5,16 @@ namespace Attapp\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Attapp\Http\Requests;
+use Session;
+use DB;
+use Attapp\Record;
+use Attapp\Student;
+use Attapp\Http\Traits\SectionsTrait;
 
-class StudentController extends Controller
+
+class RecordController extends Controller
 {
+    use SectionsTrait;
     /**
      * Display a listing of the resource.
      *
@@ -21,11 +28,15 @@ class StudentController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param  int  $id  THIS IS THE COURSE ID
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
         //
+
+
+
     }
 
     /**
@@ -36,8 +47,83 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // Create an array of the student attendance history
+        $marks = $request->roster;
+
+        // Get the course and student names
+        $section = Session::get('section');
+        $course = Session::get('id');
+
+        $students = DB::table('students')->where('course_code', $section)->orderBy('student_last_name')->get();
+
+        // store in the database
+        $record = new Record;
+
+        $i = 0;
+
+        foreach($marks as $mark) {
+
+
+            $record = new Record;
+
+                $record->course_code = $section;
+                $record->student_last_name = $students[$i]->student_last_name;
+                $record->student_first_name = $students[$i]->student_first_name;
+
+                if($mark == 'absent')
+                {
+                    $record->points = 1.0;
+                }
+                else if($mark == 'tardy')
+                {
+                    $record->points = 0.5;
+                }
+
+                $record->save();
+
+                $i++;
+
+            };
+
+
+
+
+            Session::flash('success', 'The attendance was stored!');
+
+            //redirect to another page
+            return redirect()->route('courses.index', $course);
+
     }
+
+
+        // validate the data
+        //$this->validate($request, array(
+
+        //    'student_last_name' => 'required|max:30',
+        //    'student_first_name' => 'required|max:30',
+        //));
+
+
+
+            //$record->date_of_absence = $request->instructor;
+            //$course->prefix = $request->prefix;
+            //$course->course_code = $request->course_code;
+            //$course->semester = $request->semester;
+            //$course->absentpoint = $request->absentpoint;
+            //$course->tardypoint = $request->tardypoint;
+            //$course->warning = $request->warning;
+            //$course->instructor_id = Auth::user()->id;
+            //$table->increments('id');
+            //$table->timestamps();
+            //$table->unsignedInteger('course_code');
+            //$table->string('student_last_name', 30);
+            //$table->string('student_first_name', 30);
+            //$table->date('date_of_absence')->nullable();
+            //$table->date('date_of_tardy')->nullable();
+            //$table->unsignedSmallInteger('points');
+
+
 
     /**
      * Display the specified resource.
@@ -48,6 +134,17 @@ class StudentController extends Controller
     public function show($id)
     {
         //
+        $section = $this->getSectionNumber($id);
+
+        Session::put('section', $section);
+        Session::put('id', $id);
+
+        $students = DB::table('students')->where('course_code', $section)->orderBy('student_last_name')->get();
+
+
+        // return a view and pass in the above variable
+        return view('record.create')->withStudents($students);
+
     }
 
     /**

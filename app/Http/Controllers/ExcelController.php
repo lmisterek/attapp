@@ -40,17 +40,25 @@ class ExcelController extends Controller
 
     }
 
+
+
+
     public function getExport(){
-        $student=Student::all();
+        $section=Session::get('section');
+
+
+        $student =  Student::where('course_code', $section)->orderBy('student_last_name')->get();
 
 
         Excel::create('Roster', function($excel) use($student){
 
-            $excel->sheet('Sheet 1', function($sheet) use($student){
-                $sheet->fromArray($student);
-            });
-        })->export('csv');
-    }
+        $excel->sheet('Sheet 1', function($sheet) use($student){
+            $sheet->fromArray($student);
+        });
+    })->export('csv');
+}
+
+
     public function deleteAll(){
         DB::table('students')->delete();
 

@@ -17,6 +17,7 @@ class CreateStudentsTable extends Migration
             $table->string('student_last_name', 20);
             $table->string('student_first_name', 20);
             $table->string('email', 50);
+            $table->unsignedInteger('course_code');
         });
     }
 
@@ -28,5 +29,6 @@ class CreateStudentsTable extends Migration
     public function down()
     {
         Schema::drop('students');
+
     }
 }

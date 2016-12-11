@@ -36,8 +36,8 @@
 
 
     Route::resource('courses', 'CourseController');
-
     Route::resource('students', 'StudentController');
+    Route::resource('records', 'RecordController');
 
 
 

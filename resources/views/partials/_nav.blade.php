@@ -21,14 +21,18 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/login') }}">Dashboard</a></li>
                     <li><a href="{{ url('/login') }}">Create a Class</a></li>
+                    <!--
                     <li><a href="{{ url('/login') }}">Attendance History</a></li>
+                    -->
                 </ul>
             @else
 
                 <ul class="nav navbar-nav">
                     <li class="{{ URL::route('courses.index') === URL::current() ? 'active' : '' }}" ><a href="/courses">Dashboard</a></li>
                     <li class="{{ URL::route('courses.create') === URL::current() ? 'active' : '' }}" ><a href="/courses/create">Create a Class</a></li>
+                    <!--
                     <li><a href="#">Attendance History</a></li>
+                    -->
                 </ul>
 
             @endif

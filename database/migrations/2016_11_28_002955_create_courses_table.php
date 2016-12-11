@@ -17,7 +17,7 @@ class CreateCoursesTable extends Migration
             $table->timestamps();
             $table->string('instructor', 20);
             $table->string('prefix', 10);
-            $table->unsignedInteger('course_code');
+            $table->unsignedInteger('course_code')->unique();
             $table->string('semester', 15);
             $table->float('absentpoint', 8, 2);
             $table->float('tardypoint', 8, 2);

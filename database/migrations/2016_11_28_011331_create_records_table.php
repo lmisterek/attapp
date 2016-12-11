@@ -18,8 +18,6 @@ class CreateRecordsTable extends Migration
             $table->unsignedInteger('course_code');
             $table->string('student_last_name', 30);
             $table->string('student_first_name', 30);
-            $table->date('date_of_absence')->nullable();
-            $table->date('date_of_tardy')->nullable();
             $table->unsignedSmallInteger('points');
         });
     }

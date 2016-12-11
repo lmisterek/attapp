@@ -11,6 +11,7 @@ use Carbon;
 use Attapp\Course;
 use Attapp\User;
 use Session;
+use Auth;
 
 class CourseController extends Controller
 {
@@ -22,7 +23,8 @@ class CourseController extends Controller
     public function index()
     {
         // To Do:  Change this so it just pulls up one instructor
-        $courses =  DB::table('courses')->where('course_code', '12345')->get();
+        $courses =  DB::table('courses')->where('instructor_id', Auth::user()->id)->get();
+
 
         // return a view and pass in the above variable
         return view('course.index')->withCourses($courses);
@@ -73,6 +75,7 @@ class CourseController extends Controller
         $course->absentpoint = $request->absentpoint;
         $course->tardypoint = $request->tardypoint;
         $course->warning = $request->warning;
+        $course->instructor_id = Auth::user()->id;
 
 
         $course->save();
@@ -176,4 +179,6 @@ class CourseController extends Controller
 
         return redirect()->route('courses.index');
     }
+
+
 }
