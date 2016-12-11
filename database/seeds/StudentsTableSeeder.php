@@ -13,8 +13,6 @@ class StudentsTableSeeder extends Seeder
     public function run()
     {
 
-
-
         DB::table('students')->insert([
             'student_last_name' => "Peterson",
             'student_first_name' => "Michael",
@@ -46,5 +44,20 @@ class StudentsTableSeeder extends Seeder
             'email' => 'Jennifer.Caldwell@gmail.com',
             'course_code' => '99999',
         ]);
+
+        DB::table('students')->insert([
+            'student_last_name' => "Rally",
+            'student_first_name' => "Michelle",
+            'email' => 'mr@gmail.com',
+            'course_code' => '12345',
+        ]);
+
+        DB::table('students')->insert([
+            'student_last_name' => "Harvard",
+            'student_first_name' => "John",
+            'email' => 'jh@gmail.com',
+            'course_code' => '12345',
+        ]);
+    }
     }
 }
