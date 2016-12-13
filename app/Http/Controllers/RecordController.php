@@ -22,7 +22,7 @@ class RecordController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -64,7 +64,6 @@ class RecordController extends Controller
 
         foreach($marks as $mark) {
 
-
             $record = new Record;
 
                 $record->course_code = $section;
@@ -97,31 +96,6 @@ class RecordController extends Controller
     }
 
 
-        // validate the data
-        //$this->validate($request, array(
-
-        //    'student_last_name' => 'required|max:30',
-        //    'student_first_name' => 'required|max:30',
-        //));
-
-
-
-            //$record->date_of_absence = $request->instructor;
-            //$course->prefix = $request->prefix;
-            //$course->course_code = $request->course_code;
-            //$course->semester = $request->semester;
-            //$course->absentpoint = $request->absentpoint;
-            //$course->tardypoint = $request->tardypoint;
-            //$course->warning = $request->warning;
-            //$course->instructor_id = Auth::user()->id;
-            //$table->increments('id');
-            //$table->timestamps();
-            //$table->unsignedInteger('course_code');
-            //$table->string('student_last_name', 30);
-            //$table->string('student_first_name', 30);
-            //$table->date('date_of_absence')->nullable();
-            //$table->date('date_of_tardy')->nullable();
-            //$table->unsignedSmallInteger('points');
 
 
 
@@ -133,7 +107,7 @@ class RecordController extends Controller
      */
     public function show($id)
     {
-        //
+
         $section = $this->getSectionNumber($id);
 
         Session::put('section', $section);
@@ -143,7 +117,8 @@ class RecordController extends Controller
 
 
         // return a view and pass in the above variable
-        return view('record.create')->withStudents($students);
+        return view('record.create', ['students' => $students, 'section' => $section]);
+    
 
     }
 

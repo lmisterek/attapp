@@ -25,7 +25,7 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
 
         $section = Session::get('section');
@@ -34,7 +34,7 @@ class StudentController extends Controller
         $students =  DB::table('students')->where('course_code', $section)->orderBy('student_last_name')->get();
 
         // return a view and pass in the above variable
-        return view('student.index')->withStudents($students);
+        return view('student.index', ['students' => $students, 'section' => $section]);
     }
 
     /**

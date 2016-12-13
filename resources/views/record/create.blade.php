@@ -4,10 +4,10 @@
 
 @section('content')
 
-
     <div class = "row">
         <div class="col-md-12">
-            <h1>Add a header</h1>
+
+            <h1>Section:  {{$section}}</h1>
 
 
     <div class = "row">
