@@ -61,7 +61,7 @@ class StudentController extends Controller
 
             'student_last_name' => 'required|max:20',
             'student_first_name' => 'required|max:20',
-            'email' => 'max:20',
+            'email' => 'max:50',
             ));
 
 

@@ -16,7 +16,7 @@ class CreateStudentsTable extends Migration
             $table->increments('id');
             $table->string('student_last_name', 20);
             $table->string('student_first_name', 20);
-            $table->string('email', 50);
+            $table->string('email', 50)->unique();
             $table->unsignedInteger('course_code');
         });
     }

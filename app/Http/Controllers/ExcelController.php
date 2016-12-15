@@ -28,15 +28,18 @@ class ExcelController extends Controller
         Excel::load(Request::file('student'), function($reader) {
 
                     // reader methods
+
+
                 $reader->each(function($row){
-
-                        //dump($row);
                         Student::firstOrCreate($row->toArray());
-
-
                 });
 
             });
+
+            $course = Session::get('id');
+
+            //redirect to another page
+            return redirect()->route('courses.index', $course);
 
     }
 

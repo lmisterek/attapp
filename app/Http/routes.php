@@ -16,25 +16,6 @@
         return view('home');
     });
 
-    Route::get('/show', function () {
-        return view('show');
-    });
-
-    Route::get('/home', function () {
-        return view('home');
-    });
-
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    });
-
-
-
-
-
-
-
-
     Route::resource('courses', 'CourseController');
     Route::resource('students', 'StudentController');
     Route::resource('records', 'RecordController');
