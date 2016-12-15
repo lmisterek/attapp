@@ -9,7 +9,7 @@ and a roster will be displayed on the screen.  Teachers may then select a class 
 for the course.  The attendance history for each student is then recorded in a database.
 
 ## Demo
-<Link here>
+<http://youtu.be/yDHdl6lzOKo?hd=1>
 
 ## Planning Document
 <https://docs.google.com/spreadsheets/d/1XBwAHXP3AkuITo1PHWQEoW9X_YcnNUCyT6D-7Rk4Jgw/edit?usp=sharing>
