@@ -1,7 +1,5 @@
 # p4 - Attendance Administrator (attapp)
 
-## Live URL
-<http://p4.rettkeprojects.me>
 
 ## Description
 This web application is intended for teachers to create a course, upload a list of students,
